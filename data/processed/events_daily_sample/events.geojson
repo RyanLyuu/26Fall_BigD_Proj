@@ -1,0 +1,173 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "O2-2024-01-01-001",
+      "properties": {
+        "event_id": "O2-2024-01-01-001",
+        "variable": "o2",
+        "start_time": "2024-01-01",
+        "end_time": "2024-01-07",
+        "duration_steps": 7,
+        "duration_days": 7,
+        "grid_cells": 32719,
+        "area_km2": 197913.21,
+        "volume_km3": 65065.165,
+        "depth_range_m": [
+          0.4940253794193268,
+          47.373687744140625
+        ],
+        "centroid": {
+          "latitude": 26.18743,
+          "longitude": 122.38977
+        },
+        "peak_excess": 54.805862,
+        "cumulative_excess": 760631.625,
+        "event_type": "低氧事件",
+        "threshold_mode": "absolute",
+        "threshold_percentile": 0.1,
+        "source_products": ""
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              122.26477,
+              26.06243
+            ],
+            [
+              122.51477,
+              26.06243
+            ],
+            [
+              122.51477,
+              26.31243
+            ],
+            [
+              122.26477,
+              26.31243
+            ],
+            [
+              122.26477,
+              26.06243
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PH-2024-01-01-001",
+      "properties": {
+        "event_id": "PH-2024-01-01-001",
+        "variable": "ph",
+        "start_time": "2024-01-01",
+        "end_time": "2024-01-07",
+        "duration_steps": 7,
+        "duration_days": 7,
+        "grid_cells": 27569,
+        "area_km2": 182884.739,
+        "volume_km3": 55350.83,
+        "depth_range_m": [
+          0.4940253794193268,
+          47.373687744140625
+        ],
+        "centroid": {
+          "latitude": 25.93328,
+          "longitude": 122.42609
+        },
+        "peak_excess": 0.097167,
+        "cumulative_excess": 859.914795,
+        "event_type": "高酸度事件",
+        "threshold_mode": "absolute",
+        "threshold_percentile": 0.1,
+        "source_products": ""
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              122.30109,
+              25.80828
+            ],
+            [
+              122.55109,
+              25.80828
+            ],
+            [
+              122.55109,
+              26.05828
+            ],
+            [
+              122.30109,
+              26.05828
+            ],
+            [
+              122.30109,
+              25.80828
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PH-2024-01-01-002",
+      "properties": {
+        "event_id": "PH-2024-01-01-002",
+        "variable": "ph",
+        "start_time": "2024-01-01",
+        "end_time": "2024-01-07",
+        "duration_steps": 7,
+        "duration_days": 7,
+        "grid_cells": 11,
+        "area_km2": 680.727,
+        "volume_km3": 32.655,
+        "depth_range_m": [
+          25.211408615112305,
+          29.44472885131836
+        ],
+        "centroid": {
+          "latitude": 28.25,
+          "longitude": 122.0
+        },
+        "peak_excess": 0.033268,
+        "cumulative_excess": 0.177942,
+        "event_type": "高酸度事件",
+        "threshold_mode": "absolute",
+        "threshold_percentile": 0.1,
+        "source_products": ""
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.875,
+              28.125
+            ],
+            [
+              122.125,
+              28.125
+            ],
+            [
+              122.125,
+              28.375
+            ],
+            [
+              121.875,
+              28.375
+            ],
+            [
+              121.875,
+              28.125
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

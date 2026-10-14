@@ -55,3 +55,43 @@ python -m data_processing.cmems_preprocess ... --regrid-method nearest
 - 多年 BGC 的 pH 通常来自月均文件，和日均 `o2` 合并后会保留各自实际时间点；模块不会把月均 pH 复制成日均值。
 - 模块只做结构和坐标统一，不做气候态、P90/P10 阈值或复合事件识别。
 - `o2` 单位仍为 `mmol m-3`，如要换成 `μmol kg-1`，需要使用海水密度另行转换。
+- 单要素事件识别使用 `data_processing/event_detection.py`；它会检查日/月频率，不会把月均 pH 扩展成日均。
+
+## 单要素事件识别
+
+阶段一先识别单变量事件，输出阈值场、连续时间掩膜、事件指标和 GeoJSON：
+
+```bash
+python -m data_processing.event_detection \
+  --input path/to/bio_daily.nc path/to/car_daily.nc \
+  --variables o2 ph \
+  --frequency daily \
+  --threshold-mode absolute \
+  --threshold o2=200 --threshold ph=7.95 \
+  --min-duration 5 \
+  --output data/processed/events_daily
+```
+
+默认也支持季节百分位阈值：温度使用 P90，氧和 pH 使用 P10：
+
+```bash
+python -m data_processing.event_detection \
+  --input path/to/daily_cube.nc \
+  --variables thetao o2 ph \
+  --frequency daily \
+  --threshold-mode seasonal_percentile \
+  --high-percentile 0.90 --low-percentile 0.10 \
+  --min-duration 5 \
+  --output data/processed/events_percentile
+```
+
+输出文件包括：
+
+- `masks.nc`：变量事件掩膜和时间对齐后的阈值；
+- `events.json`：事件起止时间、持续时间、面积、体积、深度范围、质心和强度；
+- `events.geojson`：供 MapLibre 或 GIS 使用的事件对象；
+- `quality.json`：频率检查、有效率、阈值配置和跳过原因。
+
+历史多年 BGC 的月均 pH 应使用 `--frequency monthly` 单独分析；使用 `--frequency daily` 时模块会跳过该变量并在质量报告中说明原因。
+
+当前识别器是阶段一的单要素原型：事件对象先通过带时间维的连通域获得，包含起止时间、持续步数、面积、体积、深度范围、质心和强度。双要素/三要素重叠、滞后匹配、LMF 和父子事件谱系属于阶段二能力，等输入数据完成共同时间尺度和长期基准后再接入。

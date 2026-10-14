@@ -2,3 +2,4 @@ numpy>=1.24
 xarray>=2024.10
 scipy>=1.10
 h5netcdf>=1.4
+h5py>=3.10

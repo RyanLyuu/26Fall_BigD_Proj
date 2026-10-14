@@ -1,0 +1,57 @@
+{
+  "config": {
+    "frequency": "daily",
+    "threshold_mode": "absolute",
+    "high_percentile": 0.9,
+    "low_percentile": 0.1,
+    "absolute_thresholds": {
+      "o2": 245.0,
+      "ph": 8.12
+    },
+    "min_duration_steps": 3,
+    "gap_tolerance_steps": 0,
+    "min_component_cells": 1,
+    "baseline_start": null,
+    "baseline_end": null,
+    "calendar_group": "month",
+    "connectivity": 1
+  },
+  "variables": {
+    "o2": {
+      "status": "ok",
+      "variable": "o2",
+      "event_type": "低氧事件",
+      "direction": "low",
+      "frequency": "daily",
+      "frequency_check": "median time step 1.00 days",
+      "threshold_mode": "absolute",
+      "min_duration_steps": 3,
+      "raw_active_cells": 32894,
+      "filtered_active_cells": 32719,
+      "event_count": 1,
+      "valid_fraction": 0.5425777777777778,
+      "units": "mmol m-3"
+    },
+    "ph": {
+      "status": "ok",
+      "variable": "ph",
+      "event_type": "高酸度事件",
+      "direction": "low",
+      "frequency": "daily",
+      "frequency_check": "median time step 1.00 days",
+      "threshold_mode": "absolute",
+      "min_duration_steps": 3,
+      "raw_active_cells": 28167,
+      "filtered_active_cells": 27580,
+      "event_count": 2,
+      "valid_fraction": 0.5425777777777778,
+      "units": "1"
+    }
+  },
+  "event_count": 3,
+  "event_types": [
+    "低氧事件",
+    "高酸度事件"
+  ],
+  "source_products": ""
+}

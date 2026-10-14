@@ -1,0 +1,25 @@
+{
+  "config": {
+    "frequency": "daily",
+    "threshold_mode": "seasonal_percentile",
+    "high_percentile": 0.9,
+    "low_percentile": 0.1,
+    "absolute_thresholds": {},
+    "min_duration_steps": 1,
+    "gap_tolerance_steps": 0,
+    "min_component_cells": 1,
+    "baseline_start": null,
+    "baseline_end": null,
+    "calendar_group": "month",
+    "connectivity": 1
+  },
+  "variables": {
+    "ph": {
+      "status": "skipped",
+      "message": "ph: median time step 30.00 days; requested frequency is daily"
+    }
+  },
+  "event_count": 0,
+  "event_types": [],
+  "source_products": ""
+}
