@@ -1,0 +1,125 @@
+[
+  {
+    "event_id": "O2-2024-01-01-001",
+    "label_id": 1,
+    "variables": [
+      "o2"
+    ],
+    "event_type": "低氧事件",
+    "start_time": "2024-01-01",
+    "end_time": "2024-01-07",
+    "duration_steps": 7,
+    "duration_unit": "day",
+    "voxel_time_count": 32719,
+    "depth_range_m": [
+      0.4940253794193268,
+      47.373687744140625
+    ],
+    "centroid": {
+      "longitude": 122.3979384718192,
+      "latitude": 26.22419971779671,
+      "depth_m": 25.71853924011953
+    },
+    "footprint_area_km2": 197913.209986103,
+    "max_area_km2": 197913.209986103,
+    "max_volume_km3": 9351.66450844569,
+    "summed_volume_time_km3_steps": 65028.254668466914,
+    "mean_available_fraction_in_bbox": 0.5854106280193236,
+    "metrics": {
+      "o2": {
+        "units": "mmol m-3",
+        "minimum": 190.1941375732422,
+        "maximum": 244.97189331054688,
+        "peak_excess": 54.80586242675781,
+        "mean_excess": 23.44175842052357,
+        "summed_voxel_time_excess": 760631.6438903809
+      }
+    },
+    "data_sources": {
+      "o2": "BGC_ANFC"
+    },
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths"
+  },
+  {
+    "event_id": "PH-2024-01-01-001",
+    "label_id": 1,
+    "variables": [
+      "ph"
+    ],
+    "event_type": "高酸度事件",
+    "start_time": "2024-01-01",
+    "end_time": "2024-01-07",
+    "duration_steps": 7,
+    "duration_unit": "day",
+    "voxel_time_count": 27569,
+    "depth_range_m": [
+      0.4940253794193268,
+      47.373687744140625
+    ],
+    "centroid": {
+      "longitude": 122.44274806154795,
+      "latitude": 26.01054824935565,
+      "depth_m": 25.940997740579597
+    },
+    "footprint_area_km2": 182884.73901259527,
+    "max_area_km2": 182210.4993974514,
+    "max_volume_km3": 8151.924140044464,
+    "summed_volume_time_km3_steps": 55320.02481644075,
+    "mean_available_fraction_in_bbox": 0.6077777777777778,
+    "metrics": {
+      "ph": {
+        "units": "1",
+        "minimum": 8.022832870483398,
+        "maximum": 8.1199951171875,
+        "peak_excess": 0.0971670150756836,
+        "mean_excess": 0.03124292227473947,
+        "summed_voxel_time_excess": 859.9147930145264
+      }
+    },
+    "data_sources": {
+      "ph": "BGC_ANFC"
+    },
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths"
+  },
+  {
+    "event_id": "PH-2024-01-01-002",
+    "label_id": 2,
+    "variables": [
+      "ph"
+    ],
+    "event_type": "高酸度事件",
+    "start_time": "2024-01-01",
+    "end_time": "2024-01-07",
+    "duration_steps": 7,
+    "duration_unit": "day",
+    "voxel_time_count": 11,
+    "depth_range_m": [
+      25.211408615112305,
+      29.44472885131836
+    ],
+    "centroid": {
+      "longitude": 122.0,
+      "latitude": 28.250000000000007,
+      "depth_m": 28.05997724014327
+    },
+    "footprint_area_km2": 680.7268199473392,
+    "max_area_km2": 680.7268199473392,
+    "max_volume_km3": 5.809546922625546,
+    "summed_volume_time_km3_steps": 32.655443417324655,
+    "mean_available_fraction_in_bbox": 1.0,
+    "metrics": {
+      "ph": {
+        "units": "1",
+        "minimum": 8.086731910705566,
+        "maximum": 8.118780136108398,
+        "peak_excess": 0.033267974853515625,
+        "mean_excess": 0.016940446937320042,
+        "summed_voxel_time_excess": 0.17794227600097656
+      }
+    },
+    "data_sources": {
+      "ph": "BGC_ANFC"
+    },
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths"
+  }
+]

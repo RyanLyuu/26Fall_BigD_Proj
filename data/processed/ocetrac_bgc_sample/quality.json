@@ -1,0 +1,167 @@
+{
+  "status": "complete",
+  "single_config": {
+    "frequency": "daily",
+    "threshold_mode": "absolute",
+    "high_percentile": 0.9,
+    "low_percentile": 0.1,
+    "absolute_thresholds": {
+      "o2": 245.0,
+      "ph": 8.12
+    },
+    "min_duration_steps": 1,
+    "gap_tolerance_steps": 0,
+    "min_component_cells": 1,
+    "baseline_start": null,
+    "baseline_end": null,
+    "calendar_group": "month",
+    "connectivity": 1
+  },
+  "compound_config": {
+    "min_duration_steps": 1,
+    "min_component_cells": 1,
+    "exclusive_pairs": false,
+    "bootstrap_repeats": 200,
+    "permutation_repeats": 199,
+    "block_length": 5,
+    "random_seed": 42,
+    "tracking": {
+      "mode": "auto",
+      "periodic_longitude": null,
+      "min_object_cells": 1,
+      "containment_threshold": 0.0,
+      "volume_weight": 0.5
+    }
+  },
+  "dimensions": {
+    "time": 7,
+    "depth": 18,
+    "latitude": 25,
+    "longitude": 25
+  },
+  "frequency": "daily",
+  "single_variables": {
+    "o2": {
+      "event_count": 1,
+      "valid_fraction": 0.5425777777777778,
+      "observed_fraction": 0.5425777777777778,
+      "valid_time_count": 7
+    },
+    "ph": {
+      "event_count": 3,
+      "valid_fraction": 0.5425777777777778,
+      "observed_fraction": 0.5425777777777778,
+      "valid_time_count": 7
+    }
+  },
+  "combinations": {
+    "o2_ph": {
+      "event_count": 1,
+      "overlap_voxel_time_count": 28029,
+      "qualified_voxel_time_count": 28029,
+      "common_valid_count": 42728,
+      "statistics": {
+        "lmf": 1.2925962351866618,
+        "sample_count": 42728,
+        "time_count": 7,
+        "valid_time_count": 7,
+        "joint_count": 28029,
+        "marginal_counts": [
+          32894,
+          28167
+        ],
+        "marginal_probabilities": [
+          0.7698464706983711,
+          0.6592164388691256
+        ],
+        "joint_probability": 0.6559867066092492,
+        "ci_95": null,
+        "permutation_p_value": null,
+        "bootstrap_valid_repeats": 0,
+        "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+        "status": "insufficient_temporal_samples",
+        "warnings": [
+          "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+          "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+        ],
+        "variables": [
+          "o2",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    }
+  },
+  "event_count": 1,
+  "single_event_count": 4,
+  "input_files": "classroom/09_CMEMS分析预报BGC/cmems_bgc_nrt_bio_20240101_20240107_118-124E_24-30N_0-50m.nc;classroom/09_CMEMS分析预报BGC/cmems_bgc_nrt_car_20240101_20240107_118-124E_24-30N_0-50m.nc",
+  "warnings": [
+    "Cell volumes approximate layers from depth-center midpoints; no explicit seafloor/cell bounds supplied.",
+    "Tracking currently loads an analysis cube in memory; distributed global-scale execution is not implemented.",
+    "Monthly/daily handover is an application adaptation; monthly means do not reveal daily onset or cessation."
+  ],
+  "time_axis": {
+    "interval_convention": "[start, end), UTC",
+    "slice_counts": {
+      "daily": 7
+    },
+    "gaps": [],
+    "transitions": [],
+    "monthly_semantics": "Monthly means retain month precision; daily onset/termination is unknown."
+  },
+  "tracking": {
+    "o2": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "ph": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "o2_ph": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    }
+  },
+  "threshold_baselines": {},
+  "lineage_link_count": 21
+}

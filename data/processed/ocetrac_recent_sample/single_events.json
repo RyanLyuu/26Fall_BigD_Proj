@@ -1,0 +1,545 @@
+[
+  {
+    "event_id": "THETAO-2026-09-28-001",
+    "label_id": 1,
+    "variables": [
+      "thetao"
+    ],
+    "event_type": "高温事件",
+    "start_time": "2026-09-28",
+    "end_time": "2026-09-29",
+    "time_span": {
+      "start": "2026-09-28",
+      "end": "2026-09-29",
+      "end_exclusive": "2026-09-30",
+      "precision": "daily",
+      "slice_counts": {
+        "daily": 2
+      },
+      "span_days": 2,
+      "supported_interval_days": 2
+    },
+    "duration_steps": 2,
+    "duration_unit": "day",
+    "voxel_time_count": 53,
+    "depth_range_m": [
+      1.0,
+      10.0
+    ],
+    "centroid": {
+      "longitude": 122.68541934817601,
+      "latitude": 27.419499773328084,
+      "depth_m": 5.2689898232290435
+    },
+    "footprint_area_km2": 13014.11839260807,
+    "max_area_km2": 13014.11839260807,
+    "max_volume_km3": 127.50224686040437,
+    "summed_volume_time_km3_steps": 158.45213704345144,
+    "integrated_volume_km3_days": 158.45213704345144,
+    "mean_available_fraction_in_bbox": 1.0,
+    "metrics": {
+      "thetao": {
+        "units": "degrees_C",
+        "minimum": 28.004404067993164,
+        "maximum": 28.189674377441406,
+        "peak_excess": 0.18967437744140625,
+        "mean_excess": 0.07792974181317179,
+        "time_weighted_mean_excess": 0.07792974181317179,
+        "summed_voxel_time_excess": 4.434057235717773,
+        "summed_voxel_excess_days": 4.434057235717773
+      }
+    },
+    "data_sources": {
+      "thetao": "PHY_ANFC"
+    },
+    "tracking": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "trajectory": [
+      {
+        "event_id": "THETAO-2026-09-28-001",
+        "time": "2026-09-28",
+        "time_end_exclusive": "2026-09-29",
+        "time_scale": "daily",
+        "object_nodes": [
+          "THETAO:O-000000-1"
+        ],
+        "centroid": {
+          "longitude": 122.91666666666666,
+          "latitude": 27.12486029801591,
+          "depth_m": 5.6
+        },
+        "area_km2": 2751.101349604185,
+        "volume_km3": 30.949890183047078
+      },
+      {
+        "event_id": "THETAO-2026-09-28-001",
+        "time": "2026-09-29",
+        "time_end_exclusive": "2026-09-30",
+        "time_scale": "daily",
+        "object_nodes": [
+          "THETAO:O-000001-1"
+        ],
+        "centroid": {
+          "longitude": 122.62928638355265,
+          "latitude": 27.491020547503037,
+          "depth_m": 5.188640426470972
+        },
+        "area_km2": 13014.11839260807,
+        "volume_km3": 127.50224686040437
+      }
+    ],
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths",
+    "parent_event_ids": [
+      "THETAO-2026-09-28-002"
+    ],
+    "child_event_ids": [],
+    "lineage_relations": [
+      "merge"
+    ]
+  },
+  {
+    "event_id": "THETAO-2026-09-28-002",
+    "label_id": 2,
+    "variables": [
+      "thetao"
+    ],
+    "event_type": "高温事件",
+    "start_time": "2026-09-28",
+    "end_time": "2026-09-28",
+    "time_span": {
+      "start": "2026-09-28",
+      "end": "2026-09-28",
+      "end_exclusive": "2026-09-29",
+      "precision": "daily",
+      "slice_counts": {
+        "daily": 1
+      },
+      "span_days": 1,
+      "supported_interval_days": 1
+    },
+    "duration_steps": 1,
+    "duration_unit": "day",
+    "voxel_time_count": 8,
+    "depth_range_m": [
+      1.0,
+      5.0
+    ],
+    "centroid": {
+      "longitude": 122.59204929492363,
+      "latitude": 27.934098589847217,
+      "depth_m": 2.895043867847651
+    },
+    "footprint_area_km2": 3413.157975228894,
+    "max_area_km2": 3413.157975228894,
+    "max_volume_km3": 19.457838135974196,
+    "summed_volume_time_km3_steps": 19.457838135974196,
+    "integrated_volume_km3_days": 19.457838135974196,
+    "mean_available_fraction_in_bbox": 1.0,
+    "metrics": {
+      "thetao": {
+        "units": "degrees_C",
+        "minimum": 28.006126403808594,
+        "maximum": 28.06265640258789,
+        "peak_excess": 0.06265640258789062,
+        "mean_excess": 0.024275319962192916,
+        "time_weighted_mean_excess": 0.024275319962192916,
+        "summed_voxel_time_excess": 0.21027565002441406,
+        "summed_voxel_excess_days": 0.21027565002441406
+      }
+    },
+    "data_sources": {
+      "thetao": "PHY_ANFC"
+    },
+    "tracking": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "trajectory": [
+      {
+        "event_id": "THETAO-2026-09-28-002",
+        "time": "2026-09-28",
+        "time_end_exclusive": "2026-09-29",
+        "time_scale": "daily",
+        "object_nodes": [
+          "THETAO:O-000000-2"
+        ],
+        "centroid": {
+          "longitude": 122.59204929492363,
+          "latitude": 27.934098589847217,
+          "depth_m": 2.895043867847651
+        },
+        "area_km2": 3413.157975228894,
+        "volume_km3": 19.457838135974196
+      }
+    ],
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths",
+    "parent_event_ids": [],
+    "child_event_ids": [
+      "THETAO-2026-09-28-001"
+    ],
+    "lineage_relations": [
+      "merge"
+    ]
+  },
+  {
+    "event_id": "O2-2026-09-28-001",
+    "label_id": 1,
+    "variables": [
+      "o2"
+    ],
+    "event_type": "低氧事件",
+    "start_time": "2026-09-28",
+    "end_time": "2026-09-29",
+    "time_span": {
+      "start": "2026-09-28",
+      "end": "2026-09-29",
+      "end_exclusive": "2026-09-30",
+      "precision": "daily",
+      "slice_counts": {
+        "daily": 2
+      },
+      "span_days": 2,
+      "supported_interval_days": 2
+    },
+    "duration_steps": 2,
+    "duration_unit": "day",
+    "voxel_time_count": 24,
+    "depth_range_m": [
+      1.0,
+      20.0
+    ],
+    "centroid": {
+      "longitude": 122.91927225104189,
+      "latitude": 27.091158603343175,
+      "depth_m": 11.76708616244572
+    },
+    "footprint_area_km2": 3436.557601486654,
+    "max_area_km2": 3436.557601486654,
+    "max_volume_km3": 55.719755782876206,
+    "summed_volume_time_km3_steps": 97.00549274278805,
+    "integrated_volume_km3_days": 97.00549274278805,
+    "mean_available_fraction_in_bbox": 1.0,
+    "metrics": {
+      "o2": {
+        "units": "mmol m-3",
+        "minimum": 204.44332885742188,
+        "maximum": 204.99557495117188,
+        "peak_excess": 0.556671142578125,
+        "mean_excess": 0.20094205359462797,
+        "time_weighted_mean_excess": 0.20094205359462797,
+        "summed_voxel_time_excess": 5.166900634765625,
+        "summed_voxel_excess_days": 5.166900634765625
+      }
+    },
+    "data_sources": {
+      "o2": "BGC_ANFC"
+    },
+    "tracking": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "trajectory": [
+      {
+        "event_id": "O2-2026-09-28-001",
+        "time": "2026-09-28",
+        "time_end_exclusive": "2026-09-29",
+        "time_scale": "daily",
+        "object_nodes": [
+          "O2:O-000000-1"
+        ],
+        "centroid": {
+          "longitude": 122.92703581797927,
+          "latitude": 27.07280127223536,
+          "depth_m": 12.524764944452533
+        },
+        "area_km2": 2064.094680837102,
+        "volume_km3": 41.285736959911844
+      },
+      {
+        "event_id": "O2-2026-09-28-001",
+        "time": "2026-09-29",
+        "time_end_exclusive": "2026-09-30",
+        "time_scale": "daily",
+        "object_nodes": [
+          "O2:O-000001-1"
+        ],
+        "centroid": {
+          "longitude": 122.91351981049466,
+          "latitude": 27.104760528419032,
+          "depth_m": 11.205681568069286
+        },
+        "area_km2": 3436.557601486654,
+        "volume_km3": 55.719755782876206
+      }
+    ],
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths",
+    "parent_event_ids": [],
+    "child_event_ids": [],
+    "lineage_relations": [
+      "continuation"
+    ]
+  },
+  {
+    "event_id": "O2-2026-09-28-002",
+    "label_id": 2,
+    "variables": [
+      "o2"
+    ],
+    "event_type": "低氧事件",
+    "start_time": "2026-09-28",
+    "end_time": "2026-09-29",
+    "time_span": {
+      "start": "2026-09-28",
+      "end": "2026-09-29",
+      "end_exclusive": "2026-09-30",
+      "precision": "daily",
+      "slice_counts": {
+        "daily": 2
+      },
+      "span_days": 2,
+      "supported_interval_days": 2
+    },
+    "duration_steps": 2,
+    "duration_unit": "day",
+    "voxel_time_count": 6,
+    "depth_range_m": [
+      40.0,
+      40.0
+    ],
+    "centroid": {
+      "longitude": 122.08326920235196,
+      "latitude": 27.916538404703882,
+      "depth_m": 40.0
+    },
+    "footprint_area_km2": 2048.5253800638925,
+    "max_area_km2": 2048.5253800638925,
+    "max_volume_km3": 20.485253800638922,
+    "summed_volume_time_km3_steps": 40.970507601277845,
+    "integrated_volume_km3_days": 40.970507601277845,
+    "mean_available_fraction_in_bbox": 1.0,
+    "metrics": {
+      "o2": {
+        "units": "mmol m-3",
+        "minimum": 201.41551208496094,
+        "maximum": 204.444091796875,
+        "peak_excess": 3.5844879150390625,
+        "mean_excess": 1.5676290693276234,
+        "time_weighted_mean_excess": 1.5676290693276234,
+        "summed_voxel_time_excess": 9.410018920898438,
+        "summed_voxel_excess_days": 9.410018920898438
+      }
+    },
+    "data_sources": {
+      "o2": "BGC_ANFC"
+    },
+    "tracking": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "trajectory": [
+      {
+        "event_id": "O2-2026-09-28-002",
+        "time": "2026-09-28",
+        "time_end_exclusive": "2026-09-29",
+        "time_scale": "daily",
+        "object_nodes": [
+          "O2:O-000000-2"
+        ],
+        "centroid": {
+          "longitude": 122.08326920235196,
+          "latitude": 27.916538404703882,
+          "depth_m": 40.00000000000001
+        },
+        "area_km2": 2048.5253800638925,
+        "volume_km3": 20.485253800638922
+      },
+      {
+        "event_id": "O2-2026-09-28-002",
+        "time": "2026-09-29",
+        "time_end_exclusive": "2026-09-30",
+        "time_scale": "daily",
+        "object_nodes": [
+          "O2:O-000001-2"
+        ],
+        "centroid": {
+          "longitude": 122.08326920235196,
+          "latitude": 27.916538404703882,
+          "depth_m": 40.00000000000001
+        },
+        "area_km2": 2048.5253800638925,
+        "volume_km3": 20.485253800638922
+      }
+    ],
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths",
+    "parent_event_ids": [],
+    "child_event_ids": [],
+    "lineage_relations": [
+      "continuation"
+    ]
+  },
+  {
+    "event_id": "PH-2026-09-28-001",
+    "label_id": 1,
+    "variables": [
+      "ph"
+    ],
+    "event_type": "高酸度事件",
+    "start_time": "2026-09-28",
+    "end_time": "2026-09-29",
+    "time_span": {
+      "start": "2026-09-28",
+      "end": "2026-09-29",
+      "end_exclusive": "2026-09-30",
+      "precision": "daily",
+      "slice_counts": {
+        "daily": 2
+      },
+      "span_days": 2,
+      "supported_interval_days": 2
+    },
+    "duration_steps": 2,
+    "duration_unit": "day",
+    "voxel_time_count": 234,
+    "depth_range_m": [
+      1.0,
+      40.0
+    ],
+    "centroid": {
+      "longitude": 122.50721168820975,
+      "latitude": 27.558579163466007,
+      "depth_m": 17.946481118920158
+    },
+    "footprint_area_km2": 17136.080045829767,
+    "max_area_km2": 17136.080045829767,
+    "max_volume_km3": 564.8186467183008,
+    "summed_volume_time_km3_steps": 1117.696366728423,
+    "integrated_volume_km3_days": 1117.696366728423,
+    "mean_available_fraction_in_bbox": 1.0,
+    "metrics": {
+      "ph": {
+        "units": "1",
+        "minimum": 8.014582633972168,
+        "maximum": 8.029891967773438,
+        "peak_excess": 0.015417098999023438,
+        "mean_excess": 0.004235528362408409,
+        "time_weighted_mean_excess": 0.004235528362408409,
+        "summed_voxel_time_excess": 1.2091255187988281,
+        "summed_voxel_excess_days": 1.2091255187988281
+      }
+    },
+    "data_sources": {
+      "ph": "BGC_ANFC"
+    },
+    "tracking": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "trajectory": [
+      {
+        "event_id": "PH-2026-09-28-001",
+        "time": "2026-09-28",
+        "time_end_exclusive": "2026-09-29",
+        "time_scale": "daily",
+        "object_nodes": [
+          "PH:O-000000-1"
+        ],
+        "centroid": {
+          "longitude": 122.50644926549514,
+          "latitude": 27.563265740272232,
+          "depth_m": 18.04493534110619
+        },
+        "area_km2": 17136.080045829767,
+        "volume_km3": 564.8186467183008
+      },
+      {
+        "event_id": "PH-2026-09-28-001",
+        "time": "2026-09-29",
+        "time_end_exclusive": "2026-09-30",
+        "time_scale": "daily",
+        "object_nodes": [
+          "PH:O-000001-1"
+        ],
+        "centroid": {
+          "longitude": 122.50799057755603,
+          "latitude": 27.553791367044436,
+          "depth_m": 17.845900504932317
+        },
+        "area_km2": 17136.080045829767,
+        "volume_km3": 552.8777200101224
+      }
+    ],
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths",
+    "parent_event_ids": [],
+    "child_event_ids": [],
+    "lineage_relations": [
+      "continuation"
+    ]
+  }
+]

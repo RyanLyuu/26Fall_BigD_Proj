@@ -1,0 +1,187 @@
+{
+  "sources": [
+    "BGC_ANFC",
+    "PHY_ANFC"
+  ],
+  "dimensions": {
+    "time": 2,
+    "latitude": 5,
+    "longitude": 5,
+    "depth": 7
+  },
+  "coordinates": {
+    "time": {
+      "count": 2,
+      "min": "2026-09-28T00:00:00.000000000",
+      "max": "2026-09-29T00:00:00.000000000"
+    },
+    "depth": {
+      "count": 7,
+      "min": "1.0",
+      "max": "50.0"
+    },
+    "latitude": {
+      "count": 5,
+      "min": "27.0",
+      "max": "28.0"
+    },
+    "longitude": {
+      "count": 5,
+      "min": "122.0",
+      "max": "123.0"
+    }
+  },
+  "variables": {
+    "thetao": {
+      "units": "degrees_C",
+      "shape": [
+        2,
+        7,
+        5,
+        5
+      ],
+      "valid_count": 300,
+      "total_count": 350,
+      "missing_fraction": 0.1428571428571429,
+      "min": 22.91732110842316,
+      "max": 28.18967377488155
+    },
+    "o2": {
+      "units": "mmol m-3",
+      "shape": [
+        2,
+        7,
+        5,
+        5
+      ],
+      "valid_count": 300,
+      "total_count": 350,
+      "missing_fraction": 0.1428571428571429,
+      "min": 201.41550557746726,
+      "max": 211.61000864499076
+    },
+    "ph": {
+      "units": "1",
+      "shape": [
+        2,
+        7,
+        5,
+        5
+      ],
+      "valid_count": 300,
+      "total_count": 350,
+      "missing_fraction": 0.1428571428571429,
+      "min": 8.0145828293031,
+      "max": 8.046639139291507
+    }
+  },
+  "variable_sources": {
+    "thetao": [
+      "PHY_ANFC"
+    ],
+    "o2": [
+      "BGC_ANFC"
+    ],
+    "ph": [
+      "BGC_ANFC"
+    ]
+  },
+  "source_inventory": [
+    {
+      "source": "PHY_ANFC",
+      "file": "data/samples/phy_anfc_thetao_20260928.nc",
+      "variables": {
+        "thetao": {
+          "units": "degrees_C"
+        }
+      },
+      "time_count": 2,
+      "time_start": "2026-09-28T00:00:00.000000000",
+      "time_end": "2026-09-29T00:00:00.000000000",
+      "depth_min_m": 0.49402499198913574,
+      "depth_max_m": 47.37369155883789
+    },
+    {
+      "source": "BGC_ANFC",
+      "file": "data/samples/bgc_anfc_o2_20260928.nc",
+      "variables": {
+        "o2": {
+          "units": "mmol m-3"
+        }
+      },
+      "time_count": 2,
+      "time_start": "2026-09-28T00:00:00.000000000",
+      "time_end": "2026-09-29T00:00:00.000000000",
+      "depth_min_m": 0.4940253794193268,
+      "depth_max_m": 47.373687744140625
+    },
+    {
+      "source": "BGC_ANFC",
+      "file": "data/samples/bgc_anfc_ph_20260928.nc",
+      "variables": {
+        "ph": {
+          "units": "1"
+        }
+      },
+      "time_count": 2,
+      "time_start": "2026-09-28T00:00:00.000000000",
+      "time_end": "2026-09-29T00:00:00.000000000",
+      "depth_min_m": 0.4940253794193268,
+      "depth_max_m": 47.373687744140625
+    }
+  ],
+  "depth_coverage": {
+    "thetao": {
+      "1.0": 50,
+      "5.0": 50,
+      "10.0": 50,
+      "20.0": 50,
+      "30.0": 50,
+      "40.0": 50,
+      "50.0": 0
+    },
+    "o2": {
+      "1.0": 50,
+      "5.0": 50,
+      "10.0": 50,
+      "20.0": 50,
+      "30.0": 50,
+      "40.0": 50,
+      "50.0": 0
+    },
+    "ph": {
+      "1.0": 50,
+      "5.0": 50,
+      "10.0": 50,
+      "20.0": 50,
+      "30.0": 50,
+      "40.0": 50,
+      "50.0": 0
+    }
+  },
+  "coverage_warnings": [
+    "thetao at 50.0 m has no valid cells; check whether the input depth subset extends below this level.",
+    "o2 at 50.0 m has no valid cells; check whether the input depth subset extends below this level.",
+    "ph at 50.0 m has no valid cells; check whether the input depth subset extends below this level."
+  ],
+  "config": {
+    "target_depths": [
+      1.0,
+      5.0,
+      10.0,
+      20.0,
+      30.0,
+      40.0,
+      50.0
+    ],
+    "bbox": [
+      122.0,
+      123.0,
+      27.0,
+      28.0
+    ],
+    "resolution": 0.25,
+    "regrid_method": "linear",
+    "duplicate_policy": "first"
+  }
+}

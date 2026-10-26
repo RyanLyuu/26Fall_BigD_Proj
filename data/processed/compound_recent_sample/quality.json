@@ -1,0 +1,214 @@
+{
+  "status": "no_events",
+  "single_config": {
+    "frequency": "daily",
+    "threshold_mode": "absolute",
+    "high_percentile": 0.9,
+    "low_percentile": 0.1,
+    "absolute_thresholds": {
+      "thetao": 28.0,
+      "o2": 205.0,
+      "ph": 8.03
+    },
+    "min_duration_steps": 5,
+    "gap_tolerance_steps": 0,
+    "min_component_cells": 1,
+    "baseline_start": null,
+    "baseline_end": null,
+    "calendar_group": "month",
+    "connectivity": 1
+  },
+  "compound_config": {
+    "min_duration_steps": 5,
+    "min_component_cells": 1,
+    "exclusive_pairs": false,
+    "bootstrap_repeats": 200,
+    "permutation_repeats": 199,
+    "block_length": 5,
+    "random_seed": 42
+  },
+  "dimensions": {
+    "time": 2,
+    "depth": 7,
+    "latitude": 5,
+    "longitude": 5
+  },
+  "frequency": "daily",
+  "single_variables": {
+    "thetao": {
+      "event_count": 0,
+      "valid_fraction": 0.8571428571428571,
+      "observed_fraction": 0.8571428571428571,
+      "valid_time_count": 2
+    },
+    "o2": {
+      "event_count": 0,
+      "valid_fraction": 0.8571428571428571,
+      "observed_fraction": 0.8571428571428571,
+      "valid_time_count": 2
+    },
+    "ph": {
+      "event_count": 0,
+      "valid_fraction": 0.8571428571428571,
+      "observed_fraction": 0.8571428571428571,
+      "valid_time_count": 2
+    }
+  },
+  "combinations": {
+    "thetao_o2": {
+      "event_count": 0,
+      "overlap_voxel_time_count": 0,
+      "qualified_voxel_time_count": 0,
+      "common_valid_count": 300,
+      "statistics": {
+        "lmf": null,
+        "sample_count": 300,
+        "time_count": 2,
+        "valid_time_count": 2,
+        "joint_count": 0,
+        "marginal_counts": [
+          0,
+          0
+        ],
+        "marginal_probabilities": [
+          0.0,
+          0.0
+        ],
+        "joint_probability": 0.0,
+        "ci_95": null,
+        "permutation_p_value": null,
+        "bootstrap_valid_repeats": 0,
+        "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+        "status": "undefined",
+        "warnings": [
+          "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+          "No common support or at least one marginal probability is zero"
+        ],
+        "variables": [
+          "thetao",
+          "o2"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    },
+    "thetao_ph": {
+      "event_count": 0,
+      "overlap_voxel_time_count": 0,
+      "qualified_voxel_time_count": 0,
+      "common_valid_count": 300,
+      "statistics": {
+        "lmf": null,
+        "sample_count": 300,
+        "time_count": 2,
+        "valid_time_count": 2,
+        "joint_count": 0,
+        "marginal_counts": [
+          0,
+          0
+        ],
+        "marginal_probabilities": [
+          0.0,
+          0.0
+        ],
+        "joint_probability": 0.0,
+        "ci_95": null,
+        "permutation_p_value": null,
+        "bootstrap_valid_repeats": 0,
+        "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+        "status": "undefined",
+        "warnings": [
+          "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+          "No common support or at least one marginal probability is zero"
+        ],
+        "variables": [
+          "thetao",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    },
+    "o2_ph": {
+      "event_count": 0,
+      "overlap_voxel_time_count": 0,
+      "qualified_voxel_time_count": 0,
+      "common_valid_count": 300,
+      "statistics": {
+        "lmf": null,
+        "sample_count": 300,
+        "time_count": 2,
+        "valid_time_count": 2,
+        "joint_count": 0,
+        "marginal_counts": [
+          0,
+          0
+        ],
+        "marginal_probabilities": [
+          0.0,
+          0.0
+        ],
+        "joint_probability": 0.0,
+        "ci_95": null,
+        "permutation_p_value": null,
+        "bootstrap_valid_repeats": 0,
+        "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+        "status": "undefined",
+        "warnings": [
+          "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+          "No common support or at least one marginal probability is zero"
+        ],
+        "variables": [
+          "o2",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    },
+    "thetao_o2_ph": {
+      "event_count": 0,
+      "overlap_voxel_time_count": 0,
+      "qualified_voxel_time_count": 0,
+      "common_valid_count": 300,
+      "statistics": {
+        "lmf": null,
+        "sample_count": 300,
+        "time_count": 2,
+        "valid_time_count": 2,
+        "joint_count": 0,
+        "marginal_counts": [
+          0,
+          0,
+          0
+        ],
+        "marginal_probabilities": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "joint_probability": 0.0,
+        "ci_95": null,
+        "permutation_p_value": null,
+        "bootstrap_valid_repeats": 0,
+        "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+        "status": "undefined",
+        "warnings": [
+          "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+          "No common support or at least one marginal probability is zero"
+        ],
+        "variables": [
+          "thetao",
+          "o2",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    }
+  },
+  "event_count": 0,
+  "single_event_count": 0,
+  "input_files": "data/processed/compound_recent_input.nc",
+  "warnings": [
+    "Cell volumes approximate layers from depth-center midpoints; no explicit seafloor/cell bounds supplied.",
+    "Objects use 4D connectivity; split/merge lineage and moving-object tracking are not implemented.",
+    "Time window is shorter than the required duration; no sustained event can be confirmed"
+  ]
+}

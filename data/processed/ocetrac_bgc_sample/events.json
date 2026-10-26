@@ -1,0 +1,211 @@
+[
+  {
+    "event_id": "CE-O2_PH-2024-01-01-001",
+    "label_id": 1,
+    "variables": [
+      "o2",
+      "ph"
+    ],
+    "event_type": "低氧+高酸度复合事件",
+    "start_time": "2024-01-01",
+    "end_time": "2024-01-07",
+    "time_span": {
+      "start": "2024-01-01",
+      "end": "2024-01-07",
+      "end_exclusive": "2024-01-08",
+      "precision": "daily",
+      "slice_counts": {
+        "daily": 7
+      },
+      "span_days": 7,
+      "supported_interval_days": 7
+    },
+    "duration_steps": 7,
+    "duration_unit": "day",
+    "voxel_time_count": 28029,
+    "depth_range_m": [
+      0.4940253794193268,
+      47.373687744140625
+    ],
+    "centroid": {
+      "longitude": 122.42762039116185,
+      "latitude": 26.01344532595337,
+      "depth_m": 25.959261698205086
+    },
+    "footprint_area_km2": 187030.2447503833,
+    "max_area_km2": 183649.32488462265,
+    "max_volume_km3": 8440.570917882345,
+    "summed_volume_time_km3_steps": 56283.99246157025,
+    "integrated_volume_km3_days": 56283.99246157025,
+    "mean_available_fraction_in_bbox": 0.6077777777777778,
+    "metrics": {
+      "o2": {
+        "units": "mmol m-3",
+        "minimum": 190.1941375732422,
+        "maximum": 244.97080993652344,
+        "peak_excess": 54.80586242675781,
+        "mean_excess": 25.906348013423266,
+        "time_weighted_mean_excess": 25.906348013423266,
+        "summed_voxel_time_excess": 728293.9371337891,
+        "summed_voxel_excess_days": 728293.9371337891
+      },
+      "ph": {
+        "units": "1",
+        "minimum": 8.022832870483398,
+        "maximum": 8.1199951171875,
+        "peak_excess": 0.0971670150756836,
+        "mean_excess": 0.030762512407688427,
+        "time_weighted_mean_excess": 0.030762512407688427,
+        "summed_voxel_time_excess": 861.3121681213379,
+        "summed_voxel_excess_days": 861.3121681213379
+      }
+    },
+    "data_sources": {
+      "o2": "BGC_ANFC",
+      "ph": "BGC_ANFC"
+    },
+    "tracking": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": false,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "trajectory": [
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-01",
+        "time_end_exclusive": "2024-01-02",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000000-1"
+        ],
+        "centroid": {
+          "longitude": 122.41474270740491,
+          "latitude": 26.04735252702637,
+          "depth_m": 25.835919478125703
+        },
+        "area_km2": 183649.32488462265,
+        "volume_km3": 8440.570917882345
+      },
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-02",
+        "time_end_exclusive": "2024-01-03",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000001-1"
+        ],
+        "centroid": {
+          "longitude": 122.42529015950736,
+          "latitude": 26.043817579948467,
+          "depth_m": 25.848269855165864
+        },
+        "area_km2": 181564.56354386575,
+        "volume_km3": 8321.862915112775
+      },
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-03",
+        "time_end_exclusive": "2024-01-04",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000002-1"
+        ],
+        "centroid": {
+          "longitude": 122.44394759427524,
+          "latitude": 26.03312368935635,
+          "depth_m": 25.86538650123642
+        },
+        "area_km2": 180863.75106189254,
+        "volume_km3": 8126.5086883822305
+      },
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-04",
+        "time_end_exclusive": "2024-01-05",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000003-1"
+        ],
+        "centroid": {
+          "longitude": 122.44665861919329,
+          "latitude": 26.03058696038889,
+          "depth_m": 25.883345153041112
+        },
+        "area_km2": 178098.54760868347,
+        "volume_km3": 8017.76560264223
+      },
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-05",
+        "time_end_exclusive": "2024-01-06",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000004-1"
+        ],
+        "centroid": {
+          "longitude": 122.42895644938163,
+          "latitude": 25.99905180162648,
+          "depth_m": 26.11505045735569
+        },
+        "area_km2": 179437.1417772624,
+        "volume_km3": 7919.58118079091
+      },
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-06",
+        "time_end_exclusive": "2024-01-07",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000005-1"
+        ],
+        "centroid": {
+          "longitude": 122.42694516980423,
+          "latitude": 25.988342809535897,
+          "depth_m": 26.14096833520255
+        },
+        "area_km2": 181490.71493817362,
+        "volume_km3": 7797.306103579766
+      },
+      {
+        "event_id": "CE-O2_PH-2024-01-01-001",
+        "time": "2024-01-07",
+        "time_end_exclusive": "2024-01-08",
+        "time_scale": "daily",
+        "object_nodes": [
+          "CE-O2_PH:O-000006-1"
+        ],
+        "centroid": {
+          "longitude": 122.40640002240055,
+          "latitude": 25.94470460989725,
+          "depth_m": 26.0487730286054
+        },
+        "area_km2": 177414.73717277692,
+        "volume_km3": 7660.397053179985
+      }
+    ],
+    "footprint_semantics": "union of occupied horizontal cell bounds over all event times/depths",
+    "parent_event_ids": [],
+    "child_event_ids": [],
+    "lineage_relations": [
+      "continuation"
+    ],
+    "matching_mode": "simultaneous",
+    "pair_semantics": "inclusive",
+    "source_event_ids": [
+      "O2-2024-01-01-001",
+      "PH-2024-01-01-001"
+    ]
+  }
+]

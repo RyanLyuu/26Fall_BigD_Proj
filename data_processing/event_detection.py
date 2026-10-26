@@ -1,16 +1,16 @@
 """Single-variable extreme-event detection for the CMEMS analysis pipeline.
 
-This module implements the first analysis milestone from the product plan:
-seasonal percentile or absolute thresholds, minimum-duration filtering, and
-spatio-temporal event objects. It deliberately keeps the time frequency of each
-variable explicit. A monthly pH series is never silently expanded to daily data.
+This compatibility entry point shares thresholds and the Ocetrac tracking
+pipeline with compound detection. The default retains per-slice anomalies;
+fixed-grid duration filtering is optional. Native time frequency remains
+explicit: monthly pH is never expanded into daily observations.
 
 Example::
 
     python -m data_processing.event_detection \
       --input classroom/09_CMEMS分析预报BGC/cmems_bgc_nrt_bio_20240101_20240107_118-124E_24-30N_0-50m.nc \
              classroom/09_CMEMS分析预报BGC/cmems_bgc_nrt_car_20240101_20240107_118-124E_24-30N_0-50m.nc \
-      --variables o2 ph --frequency daily --min-duration 5 \
+      --variables o2 ph --frequency daily \
       --output data/processed/daily_bgc_events
 
 The output directory contains ``masks.nc``, ``events.json``, ``events.geojson``
@@ -28,7 +28,6 @@ from typing import Iterable, Mapping, Sequence
 
 import numpy as np
 import xarray as xr
-from scipy import ndimage
 
 VARIABLE_RULES = {
     "thetao": {"direction": "high", "label": "高温事件", "unit": "degrees_C"},
@@ -46,7 +45,7 @@ class DetectionConfig:
     high_percentile: float = 0.90
     low_percentile: float = 0.10
     absolute_thresholds: Mapping[str, float] = field(default_factory=dict)
-    min_duration_steps: int = 5
+    min_duration_steps: int = 1
     gap_tolerance_steps: int = 0
     min_component_cells: int = 1
     baseline_start: str | None = None
@@ -65,17 +64,8 @@ class DetectionResult:
 
 
 def _load_inputs(paths: Sequence[str | Path]) -> xr.Dataset:
-    if not paths:
-        raise ValueError("At least one input NetCDF file is required")
-    datasets = [xr.open_dataset(path, decode_cf=True, mask_and_scale=True) for path in paths]
-    try:
-        # The BGC bio/car files have identical coordinates and merge cleanly.
-        result = xr.merge(datasets, compat="override", join="outer")
-        result = result.sortby("time")
-        return result.load()
-    finally:
-        for dataset in datasets:
-            dataset.close()
+    from .compound_detection import load_compound_inputs
+    return load_compound_inputs(paths)
 
 
 def _rule(variable: str) -> dict:
@@ -122,7 +112,11 @@ def _seasonal_threshold(data: xr.DataArray, variable: str, config: DetectionConf
     quantile = config.high_percentile if _rule(variable)["direction"] == "high" else config.low_percentile
     if config.calendar_group != "month":
         raise ValueError("Only calendar_group='month' is currently supported")
-    threshold = baseline.groupby("time.month").quantile(quantile, dim="time", skipna=True)
+    # Land, missing depths and absent reference months intentionally stay NaN;
+    # validity masks/quality reports expose them without a warning per chunk.
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore', message='All-NaN slice encountered', category=RuntimeWarning)
+        threshold = baseline.groupby("time.month").quantile(quantile, dim="time", skipna=True)
     if "quantile" in threshold.dims:
         threshold = threshold.squeeze("quantile", drop=True)
     return threshold
@@ -135,15 +129,17 @@ def _threshold_at_time(threshold: xr.DataArray, data: xr.DataArray) -> xr.DataAr
     for timestamp in data.time.values:
         month = int(np.datetime_as_string(timestamp, unit="M").split("-")[1])
         monthly.append(threshold.sel(month=month).expand_dims(time=[timestamp]))
-    return xr.concat(monthly, dim="time")
+    return xr.concat(monthly, dim="time", coords="minimal", compat="override")
 
 
-def _run_filter(mask: xr.DataArray, config: DetectionConfig) -> xr.DataArray:
+def _run_filter(mask: xr.DataArray, config: DetectionConfig, valid: xr.DataArray | None = None) -> xr.DataArray:
     """Keep only temporal runs meeting the minimum duration.
 
     The operation is applied independently to every depth/latitude/longitude
     column. A short gap can be filled only when ``gap_tolerance_steps`` is set.
     """
+    original_dims = mask.dims
+    mask = mask.transpose('time', ...)
     values = np.asarray(mask.fillna(False).values, dtype=bool)
     if values.ndim == 0 or values.shape[0] == 0:
         return mask.astype(bool)
@@ -151,25 +147,36 @@ def _run_filter(mask: xr.DataArray, config: DetectionConfig) -> xr.DataArray:
     filtered = np.zeros_like(flat)
     minimum = max(1, int(config.min_duration_steps))
     gap = max(0, int(config.gap_tolerance_steps))
+    validity = np.ones_like(flat) if valid is None else np.asarray(
+        valid.transpose(*mask.dims).values, dtype=bool
+    ).reshape(flat.shape)
+    if minimum == 1 and gap == 0:
+        return xr.DataArray((flat & validity).reshape(values.shape), dims=mask.dims,
+                            coords=mask.coords, name=mask.name).transpose(*original_dims)
+    if config.frequency == 'monthly':
+        times = mask.time.values.astype('datetime64[M]').astype('int64')
+    else:
+        times = mask.time.values.astype('datetime64[D]').astype('int64')
+    breaks = np.r_[0, np.flatnonzero(np.diff(times) != 1) + 1, len(times)]
+    if config.frequency == 'any':
+        breaks = np.array([0, len(times)])
     for column in range(flat.shape[1]):
-        series = flat[:, column].copy()
-        if gap:
-            false_indices = np.flatnonzero(~series)
-            for start in false_indices:
-                end = start
-                while end + 1 < series.size and not series[end + 1]:
-                    end += 1
-                if start > 0 and end < series.size - 1 and end - start + 1 <= gap:
-                    series[start : end + 1] = True
-        start = None
-        for index, is_true in enumerate(np.r_[series, False]):
-            if is_true and start is None:
-                start = index
-            elif not is_true and start is not None:
-                if index - start >= minimum:
-                    filtered[start:index, column] = True
-                start = None
-    return xr.DataArray(filtered.reshape(values.shape), dims=mask.dims, coords=mask.coords, name=mask.name)
+        for lo, hi in zip(breaks[:-1], breaks[1:]):
+            series = (flat[lo:hi, column] & validity[lo:hi, column]).copy()
+            if gap:
+                edges = np.diff(np.r_[False, ~series, False].astype(int))
+                for start, end in zip(np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)):
+                    if start > 0 and end < series.size and end - start <= gap and validity[lo+start:lo+end, column].all():
+                        series[start:end] = True
+            start = None
+            for index, is_true in enumerate(np.r_[series, False]):
+                if is_true and start is None:
+                    start = index
+                elif not is_true and start is not None:
+                    if index - start >= minimum:
+                        filtered[lo+start:lo+index, column] = True
+                    start = None
+    return xr.DataArray(filtered.reshape(values.shape), dims=mask.dims, coords=mask.coords, name=mask.name).transpose(*original_dims)
 
 
 def _grid_metrics(data: xr.DataArray) -> tuple[np.ndarray, np.ndarray | None]:
@@ -257,54 +264,16 @@ def _geojson_feature(event: dict, event_id: str, variable: str, data: xr.DataArr
 
 
 def detect_variable(data: xr.DataArray, config: DetectionConfig) -> tuple[xr.DataArray, xr.DataArray, list[dict], dict]:
-    """Detect one variable and return mask, time-aligned threshold, events and report."""
-    variable = data.name or "variable"
+    """Compatibility entry point using the same Ocetrac pipeline as compounds."""
+    from .compound_detection import detect_compound_events
+    variable = data.name or 'variable'
     _rule(variable)
-    frequency_ok, frequency_message = _validate_frequency(data, config)
-    if not frequency_ok:
-        raise ValueError(f"{variable}: {frequency_message}; requested frequency is {config.frequency}")
-    data = data.sortby("time")
-    if config.threshold_mode == "absolute":
-        if variable not in config.absolute_thresholds:
-            raise ValueError(f"Absolute threshold missing for {variable}")
-        threshold = xr.full_like(data.isel(time=0, drop=True), float(config.absolute_thresholds[variable]))
-    elif config.threshold_mode == "seasonal_percentile":
-        threshold = _seasonal_threshold(data, variable, config)
-    else:
-        raise ValueError("threshold_mode must be seasonal_percentile or absolute")
-    time_threshold = _threshold_at_time(threshold, data)
-    direction = _rule(variable)["direction"]
-    raw_mask = data > time_threshold if direction == "high" else data < time_threshold
-    raw_mask = raw_mask.fillna(False).astype(bool)
-    mask = _run_filter(raw_mask, config)
-    excess = (data - time_threshold) if direction == "high" else (time_threshold - data)
-    excess = excess.where(mask)
-    labels, number = ndimage.label(mask.values, structure=ndimage.generate_binary_structure(mask.ndim, config.connectivity))
-    events = []
-    for label_id in range(1, int(number) + 1):
-        if int((labels == label_id).sum()) < config.min_component_cells:
-            continue
-        event = _event_features(labels, label_id, data, excess)
-        event["variable"] = variable
-        event["event_type"] = _rule(variable)["label"]
-        event["threshold_mode"] = config.threshold_mode
-        event["threshold_percentile"] = config.high_percentile if direction == "high" else config.low_percentile
-        events.append(event)
-    report = {
-        "variable": variable,
-        "event_type": _rule(variable)["label"],
-        "direction": direction,
-        "frequency": config.frequency,
-        "frequency_check": frequency_message,
-        "threshold_mode": config.threshold_mode,
-        "min_duration_steps": config.min_duration_steps,
-        "raw_active_cells": int(raw_mask.sum()),
-        "filtered_active_cells": int(mask.sum()),
-        "event_count": len(events),
-        "valid_fraction": float(np.isfinite(data.values).mean()),
-        "units": data.attrs.get("units", ""),
-    }
-    return mask.rename(f"{variable}_event_mask"), time_threshold.rename(f"{variable}_threshold"), events, report
+    result = detect_compound_events(data.to_dataset(), [variable], config)
+    report = {**result.report['single_variables'][variable], 'variable': variable,
+              'frequency': config.frequency, 'threshold_mode': config.threshold_mode,
+              'min_duration_steps': config.min_duration_steps,
+              'tracking': result.report['tracking'][variable]}
+    return result.masks[f'{variable}_event_mask'], result.masks[f'{variable}_threshold'], result.events, report
 
 
 def detect_events(dataset: xr.Dataset, variables: Sequence[str], config: DetectionConfig | None = None) -> DetectionResult:
@@ -312,23 +281,24 @@ def detect_events(dataset: xr.Dataset, variables: Sequence[str], config: Detecti
     config = config or DetectionConfig()
     masks, thresholds, events, reports = {}, {}, [], {}
     features = []
+    from .compound_detection import detect_compound_events
     for variable in variables:
         if variable not in dataset:
             reports[variable] = {"status": "missing", "message": "variable not found in input"}
             continue
         try:
-            mask, threshold, variable_events, report = detect_variable(dataset[variable], config)
+            result = detect_compound_events(dataset, [variable], config)
+            mask = result.masks[f'{variable}_event_mask']
+            threshold = result.masks[f'{variable}_threshold']
+            variable_events = result.events
+            report = result.report
         except ValueError as error:
             reports[variable] = {"status": "skipped", "message": str(error)}
             continue
         masks[mask.name] = mask
         thresholds[threshold.name] = threshold
-        for index, event in enumerate(variable_events, start=1):
-            event_id = f"{variable.upper()}-{event['start_time']}-{index:03d}"
-            event["event_id"] = event_id
-            event["source_products"] = dataset.attrs.get("source_products", "")
-            events.append(event)
-            features.append(_geojson_feature(event, event_id, variable, dataset[variable]))
+        events.extend(variable_events)
+        features.extend(result.geojson['features'])
         reports[variable] = {"status": "ok", **report}
     mask_dataset = xr.Dataset(masks)
     threshold_dataset = xr.Dataset(thresholds)
@@ -366,12 +336,12 @@ def main() -> None:
     parser.add_argument("--input", nargs="+", required=True)
     parser.add_argument("--variables", nargs="+", choices=tuple(VARIABLE_RULES), required=True)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--frequency", choices=("daily", "monthly", "any"), default="daily")
+    parser.add_argument("--frequency", choices=("daily", "monthly"), default="daily")
     parser.add_argument("--threshold-mode", choices=("seasonal_percentile", "absolute"), default="seasonal_percentile")
     parser.add_argument("--threshold", action="append", default=[], help="Absolute threshold, for example o2=200")
     parser.add_argument("--high-percentile", type=float, default=0.90)
     parser.add_argument("--low-percentile", type=float, default=0.10)
-    parser.add_argument("--min-duration", type=int, default=5)
+    parser.add_argument("--min-duration", type=int, default=1)
     parser.add_argument("--gap-tolerance", type=int, default=0)
     parser.add_argument("--min-component-cells", type=int, default=1)
     parser.add_argument("--baseline-start")

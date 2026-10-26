@@ -3,3 +3,5 @@ xarray>=2024.10
 scipy>=1.10
 h5netcdf>=1.4
 h5py>=3.10
+shapely>=2.0
+ocetrac==0.1.7

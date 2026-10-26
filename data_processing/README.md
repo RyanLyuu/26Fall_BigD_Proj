@@ -1,5 +1,7 @@
 # CMEMS 统一预处理模块
 
+当前事件识别已迁移到 Ocetrac，默认逐时间片判断异常，不要求连续五天。历史月均／近期日均交接入口、隔离环境安装及可运行演示见 [Ocetrac 演化模块](OCETRAC_EVOLUTION.md)。预处理应分别准备月均、日均数据，再交给演化入口。
+
 `cmems_preprocess.py` 将 GLORYS12、CMEMS 多年 BGC、物理分析预报和 BGC 分析预报的 NetCDF 子集整理到一个共同数据立方体。输出变量为：
 
 - `thetao`：海水位温，保留 `degrees_C`；
@@ -68,7 +70,6 @@ python -m data_processing.event_detection \
   --frequency daily \
   --threshold-mode absolute \
   --threshold o2=200 --threshold ph=7.95 \
-  --min-duration 5 \
   --output data/processed/events_daily
 ```
 
@@ -81,7 +82,6 @@ python -m data_processing.event_detection \
   --frequency daily \
   --threshold-mode seasonal_percentile \
   --high-percentile 0.90 --low-percentile 0.10 \
-  --min-duration 5 \
   --output data/processed/events_percentile
 ```
 
@@ -94,4 +94,49 @@ python -m data_processing.event_detection \
 
 历史多年 BGC 的月均 pH 应使用 `--frequency monthly` 单独分析；使用 `--frequency daily` 时模块会跳过该变量并在质量报告中说明原因。
 
-当前识别器是阶段一的单要素原型：事件对象先通过带时间维的连通域获得，包含起止时间、持续步数、面积、体积、深度范围、质心和强度。双要素/三要素重叠、滞后匹配、LMF 和父子事件谱系属于阶段二能力，等输入数据完成共同时间尺度和长期基准后再接入。
+`event_detection.py` 保留阶段一的单要素入口。复合识别使用新增的 `compound_detection.py`，复用其阈值和持续时间逻辑，支持双要素/三要素同时型与持续叠加型事件、区域 LMF 和探索性的时间区块统计检验。
+
+## 复合事件识别
+
+先安装 Python 依赖：
+
+```bash
+python -m pip install -r data_processing/requirements.txt
+```
+
+当前已有数据可直接运行低氧＋高酸度的流程验证：
+
+```bash
+python -m data_processing.compound_detection \
+  --input classroom/09_CMEMS分析预报BGC/cmems_bgc_nrt_bio_20240101_20240107_118-124E_24-30N_0-50m.nc \
+          classroom/09_CMEMS分析预报BGC/cmems_bgc_nrt_car_20240101_20240107_118-124E_24-30N_0-50m.nc \
+  --variables o2 ph --frequency daily \
+  --threshold-mode absolute --threshold o2=245 --threshold ph=8.12 \
+  --single-min-duration 3 --min-duration 3 \
+  --output data/processed/compound_bgc_daily_sample
+```
+
+这些阈值用于流程验证，不作为通用生态极端标准。相同网格的多个文件可以直接合并；不同网格必须先使用预处理模块。默认单要素和复合持续条件均为 1 个时间片，再通过 Ocetrac 追踪；显式指定 `--min-duration 5` 才采用旧的逐位置五步筛选。
+
+针对已经统一的三变量数据立方体，可使用研究基准期和百分位阈值：
+
+```bash
+python -m data_processing.compound_detection \
+  --input path/to/aligned_daily_cube.nc \
+  --variables thetao o2 ph --frequency daily \
+  --threshold-mode seasonal_percentile \
+  --baseline-start 1993-01-01 --baseline-end 2022-12-31 \
+  --output data/processed/compound_events
+```
+
+这里的路径和基准期是示例，需要对应实际数据共同覆盖范围。日均输入必须包含连续时间段，缺失日期会补为缺测并中断持续条件；月均 pH 不能作为日均输入使用。
+
+输出为 `masks.nc`、`events.json`、`single_events.json`、`events.geojson`、`tracks.geojson`、`lineage.json`、`quality.json`。`*_valid_mask=0` 表示未知，不能把对应 `*_event_mask=0` 解释为正常。GeoJSON 是事件实际格点范围的并集；逐片边界及谱系另行输出。
+
+详细参数、数据语义、LMF 口径与限制见 [复合识别说明](COMPOUND_DETECTION.md)。逐片追踪和显式谱系已实现；滞后/级联匹配、全球分布式计算和前端真实计算接入尚未实现。
+
+验证命令：
+
+```bash
+python -m unittest discover -s data_processing/tests -v
+```

@@ -1,0 +1,501 @@
+{
+  "status": "complete",
+  "data_kind": "demo_synthetic",
+  "single_config": {
+    "frequency": "mixed",
+    "threshold_mode": "absolute",
+    "high_percentile": 0.9,
+    "low_percentile": 0.1,
+    "absolute_thresholds": {
+      "thetao": 25.0,
+      "o2": 200.0,
+      "ph": 8.0
+    },
+    "min_duration_steps": 1,
+    "gap_tolerance_steps": 0,
+    "min_component_cells": 1,
+    "baseline_start": null,
+    "baseline_end": null,
+    "calendar_group": "month",
+    "connectivity": 1
+  },
+  "compound_config": {
+    "min_duration_steps": 1,
+    "min_component_cells": 1,
+    "exclusive_pairs": false,
+    "bootstrap_repeats": 200,
+    "permutation_repeats": 199,
+    "block_length": 5,
+    "random_seed": 42,
+    "tracking": {
+      "mode": "auto",
+      "periodic_longitude": null,
+      "min_object_cells": 1,
+      "containment_threshold": 0.0,
+      "volume_weight": 0.5
+    }
+  },
+  "dimensions": {
+    "time": 9,
+    "depth": 3,
+    "latitude": 7,
+    "longitude": 12
+  },
+  "frequency": "mixed",
+  "single_variables": {
+    "thetao": {
+      "event_count": 1,
+      "valid_fraction": 1.0,
+      "observed_fraction": 1.0,
+      "valid_time_count": 9
+    },
+    "o2": {
+      "event_count": 1,
+      "valid_fraction": 1.0,
+      "observed_fraction": 1.0,
+      "valid_time_count": 9
+    },
+    "ph": {
+      "event_count": 1,
+      "valid_fraction": 1.0,
+      "observed_fraction": 1.0,
+      "valid_time_count": 9
+    }
+  },
+  "combinations": {
+    "thetao_o2": {
+      "event_count": 1,
+      "overlap_voxel_time_count": 36,
+      "qualified_voxel_time_count": 36,
+      "common_valid_count": 2268,
+      "statistics": {
+        "lmf": null,
+        "status": "separated_by_time_scale",
+        "by_time_scale": {
+          "daily": {
+            "lmf": 63.00000000000001,
+            "sample_count": 1764,
+            "time_count": 7,
+            "valid_time_count": 7,
+            "joint_count": 28,
+            "marginal_counts": [
+              28,
+              28
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          },
+          "monthly": {
+            "lmf": 63.00000000000001,
+            "sample_count": 504,
+            "time_count": 2,
+            "valid_time_count": 2,
+            "joint_count": 8,
+            "marginal_counts": [
+              8,
+              8
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          }
+        },
+        "warnings": [
+          "Monthly and daily opportunities are not pooled into one LMF."
+        ],
+        "variables": [
+          "thetao",
+          "o2"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    },
+    "thetao_ph": {
+      "event_count": 1,
+      "overlap_voxel_time_count": 36,
+      "qualified_voxel_time_count": 36,
+      "common_valid_count": 2268,
+      "statistics": {
+        "lmf": null,
+        "status": "separated_by_time_scale",
+        "by_time_scale": {
+          "daily": {
+            "lmf": 63.00000000000001,
+            "sample_count": 1764,
+            "time_count": 7,
+            "valid_time_count": 7,
+            "joint_count": 28,
+            "marginal_counts": [
+              28,
+              28
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          },
+          "monthly": {
+            "lmf": 63.00000000000001,
+            "sample_count": 504,
+            "time_count": 2,
+            "valid_time_count": 2,
+            "joint_count": 8,
+            "marginal_counts": [
+              8,
+              8
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          }
+        },
+        "warnings": [
+          "Monthly and daily opportunities are not pooled into one LMF."
+        ],
+        "variables": [
+          "thetao",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    },
+    "o2_ph": {
+      "event_count": 1,
+      "overlap_voxel_time_count": 36,
+      "qualified_voxel_time_count": 36,
+      "common_valid_count": 2268,
+      "statistics": {
+        "lmf": null,
+        "status": "separated_by_time_scale",
+        "by_time_scale": {
+          "daily": {
+            "lmf": 63.00000000000001,
+            "sample_count": 1764,
+            "time_count": 7,
+            "valid_time_count": 7,
+            "joint_count": 28,
+            "marginal_counts": [
+              28,
+              28
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          },
+          "monthly": {
+            "lmf": 63.00000000000001,
+            "sample_count": 504,
+            "time_count": 2,
+            "valid_time_count": 2,
+            "joint_count": 8,
+            "marginal_counts": [
+              8,
+              8
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          }
+        },
+        "warnings": [
+          "Monthly and daily opportunities are not pooled into one LMF."
+        ],
+        "variables": [
+          "o2",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    },
+    "thetao_o2_ph": {
+      "event_count": 1,
+      "overlap_voxel_time_count": 36,
+      "qualified_voxel_time_count": 36,
+      "common_valid_count": 2268,
+      "statistics": {
+        "lmf": null,
+        "status": "separated_by_time_scale",
+        "by_time_scale": {
+          "daily": {
+            "lmf": 3969.0000000000005,
+            "sample_count": 1764,
+            "time_count": 7,
+            "valid_time_count": 7,
+            "joint_count": 28,
+            "marginal_counts": [
+              28,
+              28,
+              28
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          },
+          "monthly": {
+            "lmf": 3969.0000000000005,
+            "sample_count": 504,
+            "time_count": 2,
+            "valid_time_count": 2,
+            "joint_count": 8,
+            "marginal_counts": [
+              8,
+              8,
+              8
+            ],
+            "marginal_probabilities": [
+              0.015873015873015872,
+              0.015873015873015872,
+              0.015873015873015872
+            ],
+            "joint_probability": 0.015873015873015872,
+            "ci_95": null,
+            "permutation_p_value": null,
+            "bootstrap_valid_repeats": 0,
+            "interpretation": "statistical co-occurrence of duration-qualified single-variable states; not ecological damage",
+            "status": "insufficient_temporal_samples",
+            "warnings": [
+              "Pooled regional LMF can reflect spatial heterogeneity; it is not a per-grid-cell dependency estimate",
+              "Fewer than 3 supported time blocks or 10 time steps; CI and permutation test omitted"
+            ]
+          }
+        },
+        "warnings": [
+          "Monthly and daily opportunities are not pooled into one LMF."
+        ],
+        "variables": [
+          "thetao",
+          "o2",
+          "ph"
+        ],
+        "sample_semantics": "inclusive simultaneous overlap before compound-duration filtering; valid time-depth-grid opportunities"
+      }
+    }
+  },
+  "event_count": 4,
+  "single_event_count": 3,
+  "input_files": "",
+  "warnings": [
+    "Cell volumes approximate layers from depth-center midpoints; no explicit seafloor/cell bounds supplied.",
+    "Tracking currently loads an analysis cube in memory; distributed global-scale execution is not implemented.",
+    "Monthly/daily handover is an application adaptation; monthly means do not reveal daily onset or cessation."
+  ],
+  "time_axis": {
+    "interval_convention": "[start, end), UTC",
+    "slice_counts": {
+      "daily": 7,
+      "monthly": 2
+    },
+    "gaps": [],
+    "transitions": [
+      {
+        "from": "monthly",
+        "to": "daily",
+        "at": "2024-08-01",
+        "contiguous": true
+      }
+    ],
+    "monthly_semantics": "Monthly means retain month precision; daily onset/termination is unknown."
+  },
+  "tracking": {
+    "thetao": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "o2": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "ph": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "thetao_o2": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "thetao_ph": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "o2_ph": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    },
+    "thetao_o2_ph": {
+      "engine": "ocetrac",
+      "version": "0.1.7",
+      "module": "DeepTrack",
+      "config": {
+        "mode": "auto",
+        "periodic_longitude": null,
+        "min_object_cells": 1,
+        "containment_threshold": 0.0,
+        "volume_weight": 0.5
+      },
+      "periodic_longitude": true,
+      "morphological_filling": false,
+      "temporal_gap_bridging": false,
+      "upstream": "https://github.com/ocetrac/ocetrac",
+      "paper_scope": "SurfTrack: Scannell et al. 2024; DeepTrack: later upstream volumetric extension"
+    }
+  },
+  "threshold_baselines": {},
+  "lineage_link_count": 56,
+  "cutover": "2024-08-01"
+}

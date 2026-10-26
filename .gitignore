@@ -1,1 +1,4 @@
 /classroom
+__pycache__/
+*.py[cod]
+.venv/

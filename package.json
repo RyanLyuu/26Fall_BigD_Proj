@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "typecheck": "tsc -b --pretty false"
+    "typecheck": "tsc -b --pretty false",
+    "test:grid": "node tests/ocean-grid.test.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
