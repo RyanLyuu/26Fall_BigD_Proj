@@ -138,5 +138,5 @@ python -m data_processing.compound_detection \
 验证命令：
 
 ```bash
-python -m unittest discover -s data_processing/tests -v
+python -m unittest discover -s tests/data_processing -v
 ```

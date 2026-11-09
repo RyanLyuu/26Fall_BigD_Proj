@@ -1,4 +1,7 @@
-/classroom
+node_modules/
+dist/
+*.tsbuildinfo
+.pytest_cache/
 __pycache__/
 *.py[cod]
 .venv/

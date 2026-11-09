@@ -114,7 +114,7 @@ python -m venv .venv
 ## 验证与当前边界
 
 ```bash
-.venv/bin/python -B -m unittest discover -s data_processing/tests -v
+.venv/bin/python -B -m unittest discover -s tests/data_processing -v
 ```
 
 测试使用真实 Ocetrac，覆盖月／日交接、闰年、缺测中断、移动对象、垂向连接、全球日期变更线、区域边界、分裂合并、独立参考阈值和输出回读。

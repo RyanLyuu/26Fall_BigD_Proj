@@ -136,7 +136,7 @@ python -m data_processing.compound_detection \
 ### 测试
 
 ```bash
-python -m unittest discover -s data_processing/tests -v
+python -m unittest discover -s tests/data_processing -v
 ```
 
 测试覆盖组合包含/互斥、时间交会与持续要求、真实缺失日期、缺测、月频保护、空间错位、变量单位、维度顺序、边界孔洞、短缺口语义、LMF 与可复现区块推断、文件写入与回读。

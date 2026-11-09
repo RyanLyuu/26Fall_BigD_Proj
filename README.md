@@ -6,7 +6,7 @@ To initialyze: npm run dev
 
 ```bash
 .venv/bin/python -B -m data_processing.demo_evolution
-.venv/bin/python -B -m unittest discover -s data_processing/tests -v
+.venv/bin/python -B -m unittest discover -s tests/data_processing -v
 ```
 
 第一条命令生成明确标记的全球粗网格演示数据及追踪结果。安装、真实数据输入、输出结构和当前计算规模限制见 [Ocetrac 演化模块说明](data_processing/OCETRAC_EVOLUTION.md)。
